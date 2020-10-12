@@ -6,10 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  currentCourseId = 1;
+  courseLessons = {
+    1: [
+      { title: 'Hello Angular' },
+      { title: 'Component Fundamentals' },
+      { title: 'Template Driven Forms' },
+      { title: 'Angular Services' },
+      { title: 'Server Communication' },
+      { title: 'Component Driven Architecture' },
+      { title: 'Angular Routing' },
+      { title: 'Unit Testing Fundamentals' },
+    ]
+  };
   constructor() { }
 
   ngOnInit(): void {
   }
+  getCourseLessons(courseId) {
 
+    return this.courseLessons[courseId];
+  }
 }
