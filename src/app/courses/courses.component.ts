@@ -6,44 +6,17 @@ import { CoursesService } from '../shared/services/courses.service';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  courses = {}
   selectedCourse = null;
+  courses = null;
+
   constructor(private coursesService: CoursesService) { }
 
   ngOnInit(): void {
-    this.loadCourses(true);
-    this.resetCourse();
-  }
-  selectCourse(course) {
-    this.selectedCourse = course;
+    this.resetSelectedCourse();
+    this.courses = this.coursesService.courses;
   }
 
-  loadCourses(displayNotification: boolean) {
-    this.courses = this.coursesService.getAllCourses(displayNotification);
-  }
-
-  saveCourse(course) {
-    if (course.id) {
-      this.updateCourse(course);
-    } else {
-      this.createCourse(course);
-    }
-    this.resetCourse();
-  }
-
-  updateCourse(course) {
-    this.coursesService.updateCourse(course)
-  }
-
-  createCourse(course) {
-    this.coursesService.createCourse(course)
-  }
-
-  deleteCourse(id: number) {
-    this.coursesService.deleteCourse(id)
-  }
-
-  resetCourse() {
+  resetSelectedCourse() {
     const emptyCourse = {
       id: null,
       title: '',
@@ -53,5 +26,24 @@ export class CoursesComponent implements OnInit {
     };
 
     this.selectCourse(emptyCourse);
+  }
+  selectCourse(course) {
+    this.selectedCourse = course;
+  }
+
+  saveCourse(course) {
+    console.log(course.valid);
+
+    if (course.id) {
+      this.coursesService.update(course)
+    } else {
+      this.coursesService.create(course)
+    }
+  }
+  deleteCourse(courseId) {
+    console.log("delete course ", courseId);
+  }
+  cancel() {
+    this.resetSelectedCourse()
   }
 }

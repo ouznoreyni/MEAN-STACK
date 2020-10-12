@@ -4,25 +4,41 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CoursesService {
-
-  constructor() { }
-  getAllCourses(displayNotification: boolean) {
-    if (displayNotification) {
-      console.log('Get All Courses HTTP Call');
+  courses = [
+    {
+      id: 1,
+      title: 'Angular 10 fundamentals',
+      description: 'learn the fundamentals of Angular 10',
+      percentComplete: 28,
+      favorite: true
+    },
+    {
+      id: 2,
+      title: 'Master Javascript concepts',
+      description: 'learn all advanced javascript concepts',
+      percentComplete: 50,
+      favorite: true
     }
-    return null;
+  ];
+  constructor() { }
+
+  all() {
+    return this.courses;
   }
-
-  createCourse(course) {
-    console.log("created course", course);
+  find(courseId) {
+    console.log("course ", courseId);
 
   }
+  create(course) {
+    console.log("create course ", course);
 
-  updateCourse(course) {
-    console.log("update course", course);
   }
+  update(course) {
+    console.log("update course ", course);
 
-  deleteCourse(id: number) {
-    console.log("deleted course", id);
+  }
+  delete(courseId) {
+    console.log("delete course ", courseId);
+
   }
 }
