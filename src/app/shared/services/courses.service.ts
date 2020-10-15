@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 //api apiEndPoint url
-const apiEndPoint = "http://localhost:8080/api/courses";
+const apiEndPoint = 'http://localhost:8000/api/courses';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursesService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUrlwithId(id) {
     return `${apiEndPoint}/${id}`;

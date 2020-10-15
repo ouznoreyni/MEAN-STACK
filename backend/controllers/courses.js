@@ -1,4 +1,6 @@
 const { Course } = require('../models/course');
+const { validateCourse } = require('../validations/course');
+
 exports.course_all = async (req, res) => {
     const courses = await Course.findAll();
     return res.json({ courses });
@@ -18,7 +20,8 @@ exports.course_details = async (req, res) => {
 }
 exports.course_post = async (req, res) => {
     // Validate request
-
+    const { error } = validateCourse(req.body);
+    if (error) return res.status(400).json({ error: error.details[0].message })
     // Save course in the database
     try {
         const course = await Course.create({
@@ -36,7 +39,8 @@ exports.course_post = async (req, res) => {
 }
 exports.course_patch = async (req, res) => {
     // Validate request
-
+    const { error } = validateCourse(req.body);
+    if (error) return res.status(400).json({ error: error.details[0].message })
     //update
     try {
         const { course: id } = req.params;
