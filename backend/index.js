@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to Learn Empire application." });
 });
 app.use("/api/courses", require('./routes/courses'));
+app.use("/api/auth", require('./routes/auth'));
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8000;

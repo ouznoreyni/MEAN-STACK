@@ -1,13 +1,14 @@
 {
-    "host": "",
-    "user": "",
-    "password": "",
-    "db": "",
-    "dialects": "mysql",
-    "pool": {
-        "max": 5,
-        "min": 0,
-        "acquire": 30000,
-        "idle": 10000
-    }
+  "host": "",
+  "user": "",
+  "password": "",
+  "db": "",
+  "dialects": "mysql",
+  "jwtPrivateKey": "",
+  "pool": {
+    "max": 5,
+    "min": 0,
+    "acquire": 30000,
+    "idle": 10000
+  }
 }
