@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+const baseUrl = "http://localhost:8080/api/courses";
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
+
   courses = [
     {
       id: 1,
@@ -20,25 +22,24 @@ export class CoursesService {
       favorite: true
     }
   ];
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  all() {
-    return this.courses;
+  getUrlwithId(id) {
+    return `${baseUrl}/${id}`;
   }
-  find(courseId) {
-    console.log("course ", courseId);
-
+  all() {
+    return this.http.get(baseUrl);
+  }
+  find(course) {
+    return this.http.get(this.getUrlwithId(course.id))
   }
   create(course) {
-    console.log("create course ", course);
-
+    return this.http.post(baseUrl, course);
   }
   update(course) {
-    console.log("update course ", course);
-
+    return this.http.patch(this.getUrlwithId(course.id), course);
   }
-  delete(courseId) {
-    console.log("delete course ", courseId);
-
+  delete(course) {
+    return this.http.delete(this.getUrlwithId(course))
   }
 }
