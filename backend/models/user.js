@@ -12,6 +12,7 @@ exports.User = sequelize.define("user", {
     },
     username: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
     },
     password: {

@@ -23,3 +23,16 @@ exports.validateUser = (user) => {
     });
     return schema.validate(user);
 }
+
+exports.validateLogin = (user) => {
+    const schema = Joi.object({
+        username: Joi.string()
+            .min(3)
+            .max(30)
+            .required(),
+        password: Joi.string()
+            .required()
+            .pattern(new RegExp('^[a-zA-Z0-9]{5,30}$'))
+    })
+    return schema.validate(user);
+}

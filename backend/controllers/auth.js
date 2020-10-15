@@ -1,5 +1,6 @@
-const bcrypt = require('bcrypt')
-const { validateUser } = require("../validations/user")
+const bcrypt = require('bcrypt');
+const config = require('config');
+const { validateUser, validateLogin } = require("../validations/user")
 const { User } = require('../models/user');
 const generateToken = require('../utils/generateToken');
 
@@ -20,6 +21,21 @@ exports.signup = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+}
+exports.login = async (req, res) => {
+    //validate data
+    const { error } = validateLogin(req.body)
+    if (error) return res.status(400).json({ error: error.details[0].message });
+    //get user
+    const { dataValues: user } = await User.findOne({ where: { username: req.body.username } });
+    if (!user) return res.status(404).json({ error: "Utilisateur n'existe pas" });
+    const passwordValid = await bcrypt.compare(req.body.password, user.password);
+    if (!passwordValid) {
+        return res.status(400).json({ error: "login ou mot de passe incorrect" });
+    }
+    delete user.password;
+    const token = generateToken(user);
+    return res.header('x-auth-token', token).json({ user });
 }
 exports.logout = (req, res) => {
     return res.json({ data: "logou" })
