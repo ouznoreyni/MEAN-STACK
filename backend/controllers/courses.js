@@ -28,10 +28,7 @@ exports.course_post = async (req, res) => {
 
 
     try {
-        const course = await Course.create({
-            title: req.body.title,
-            description: req.body.description,
-        });
+        const course = await Course.create({ ...req.body });
 
         return res.status(201).json({ course });
     } catch (error) {

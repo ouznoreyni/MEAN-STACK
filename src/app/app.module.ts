@@ -10,19 +10,27 @@ import { CoursesService } from './shared/services/courses.service';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CoursesListComponent } from './courses/courses-list/courses-list.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, CoursesComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    CoursesListComponent,
+    CourseDetailsComponent,
+    CoursesComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [CoursesService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}
