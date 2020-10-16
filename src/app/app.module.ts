@@ -12,11 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
+import { LessonListComponent } from './lesson/lesson-list/lesson-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    LessonListComponent,
     CoursesListComponent,
     CourseDetailsComponent,
     CoursesComponent,
